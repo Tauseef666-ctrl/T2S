@@ -14,8 +14,8 @@
 | **Course** | Diploma CSE — BTEUP |
 | **Semester** | 3 (Lateral Entry — 2 Year) |
 | **Users** | 3 College Friends |
-| **Version** | 1.0.0 |
-| **Status** | ✅ v1.0.0 Released |
+| **Version** | 2.0.0 |
+| **Status** | ✅ v2.0.0 Released |
 
 ---
 
@@ -133,6 +133,33 @@
 - [ ] Android release build — Pending
 - [x] T2S.txt — Rewritten with v1.0 build details
 
+### Phase 13: v2.0 Data Layer & Persistence ✅
+- [x] Restructured subject data — 9 files with unit/topic structure (225 topics)
+- [x] Question bank — 167 MCQs across 9 subjects with marking system
+- [x] AsyncStorage persistence — Debounced saves, load on mount, graceful fallback
+- [x] State management — useReducer + actions + types for all app state
+- [x] Reusable components — SubjectSelector, ProgressBar, StatCard, EmptyState
+
+### Phase 14: v2.0 Exam & Practice Systems ✅
+- [x] Mock Test Exam Engine — 4-phase flow (Configure → Exam → Results → Review)
+- [x] Configurable exam — Subject, unit, difficulty, count, time, negative marking
+- [x] Wrong Answer Notebook — Save, filter, search, practice replay
+- [x] Daily 20 Practice — Random questions, timer, streak tracking
+- [x] Smart Revision — Recommendations from quiz scores, wrong answers, study gaps
+
+### Phase 15: v2.0 Productivity Systems ✅
+- [x] Expanded Notes — Personal + Study Notes with tags, subjects, units
+- [x] Study Todo — Priorities, due dates, subject filter, sections
+- [x] Group Todo — Friend assignment, completion tracking
+- [x] Study Streak — Weekly calendar, heatmap, lifetime stats
+- [x] Dynamic Home — Real progress, streak, daily goals
+
+### Phase 16: v2.0 Intelligence & Labs ✅
+- [x] Smart AI Chat — 15+ subjects, typing indicator, save-as-note, study path
+- [x] Subject Labs — C, SQL, Networking, OS, Web with terminal UI
+- [x] Global Search — Search across all content types
+- [x] Enhanced Profile — Data management, reset, export
+
 ---
 
 ## 📅 Timeline
@@ -151,6 +178,10 @@
 | Phase 10 | 2026-08-17 | 2026-08-17 | ✅ Complete |
 | Phase 11 | 2026-08-17 | 2026-08-17 | ✅ Complete |
 | Phase 12 | 2026-08-17 | 2026-08-17 | ✅ Complete |
+| Phase 13 | 2026-08-17 | 2026-08-17 | ✅ Complete |
+| Phase 14 | 2026-08-17 | 2026-08-17 | ✅ Complete |
+| Phase 15 | 2026-08-17 | 2026-08-17 | ✅ Complete |
+| Phase 16 | 2026-08-17 | 2026-08-17 | ✅ Complete |
 
 ---
 
@@ -196,6 +227,19 @@
 - Android APK ready
 - GitHub release
 
+### v2.0.0 — Major Upgrade
+- 167 MCQ questions across 9 subjects
+- Mock Test Exam Engine with negative marking
+- Wrong Answer Notebook + Daily 20 Practice
+- Smart Revision system
+- Study Todo + Group Todo
+- Study Streak with heatmap
+- Expanded Notes (Personal + Study)
+- Smart AI Chat with 15+ subjects
+- Subject Labs (C, SQL, Networking, OS, Web)
+- Global Search
+- AsyncStorage persistence
+
 ---
 
 ## 📊 Progress Tracker
@@ -220,6 +264,10 @@
 | Phase 10 — Notes & Resources | 100% | ✅ Done |
 | Phase 11 — Gamification | 100% | ✅ Done |
 | Phase 12 — Polish & Release | 100% | ✅ Done |
+| Phase 13 — v2.0 Data & Persistence | 100% | ✅ Done |
+| Phase 14 — v2.0 Exam & Practice | 100% | ✅ Done |
+| Phase 15 — v2.0 Productivity | 100% | ✅ Done |
+| Phase 16 — v2.0 Intelligence | 100% | ✅ Done |
 
 ---
 
@@ -258,7 +306,7 @@
 
 ---
 
-*Last Updated: 2026-08-17 — v1.0.0 Released to GitHub*
+*Last Updated: 2026-08-17 — v2.0.0 Released to GitHub*
 
 ---
 
@@ -309,3 +357,20 @@
 | 19:50 | **Remote URL cleaned** — PAT removed from git remote |
 | 19:55 | **T2S.txt rewritten** — Full v1.0 build details with all screens, subjects, themes |
 | 20:00 | **plan.md updated** — All phases marked complete, progress 100% |
+| 20:30 | **v2.0 — Data Layer Restructure** — 9 subject files (225 topics), 167 MCQ questions across 9 subjects |
+| 20:35 | **AsyncStorage Persistence** — State management with debounced saves, load on mount, graceful fallback |
+| 20:40 | **Mock Test Exam Engine** — Configurable subject/unit/difficulty/count/time/negative marking, 4-phase flow |
+| 20:45 | **Wrong Answer Notebook** — Save, filter, search, practice replay, subject breakdown stats |
+| 20:50 | **Daily 20 Practice** — Random 20 questions, timer, streak tracking, 7-day history |
+| 20:55 | **Smart Revision** — Topic recommendations based on quiz scores, wrong answers, needs_revision, 7+ days unstudied |
+| 21:00 | **Expanded Notes** — Personal + Study Notes with tags, subjects, units, search, sort, CRUD |
+| 21:05 | **Study Todo** — Priorities, due dates, subject filter, today/upcoming/completed sections |
+| 21:10 | **Group Todo** — Friend assignment, completion tracking, progress indicators |
+| 21:15 | **Study Streak** — Weekly calendar, 30-day heatmap, lifetime stats grid |
+| 21:20 | **Dynamic Home** — Real progress %, streak indicator, daily goals, continue studying |
+| 21:25 | **Smart AI Chat** — 15+ subjects, typing indicator, save-as-note, study path recommendations |
+| 21:30 | **Subject Labs** — C, SQL, Networking, OS, Web with terminal UI and practice problems |
+| 21:35 | **Global Search** — Search across subjects, notes, questions, videos with recent/popular |
+| 21:40 | **Enhanced Profile** — Data management, reset progress, export notes, clear local data |
+| 21:45 | **Reusable Components** — SubjectSelector, ProgressBar, StatCard, EmptyState |
+| 21:50 | **Build + Push** — 45 files changed, 11460 insertions, pushed to GitHub as v2.0 |
