@@ -1,0 +1,273 @@
+T2S — Three Friends. One Journey.
+
+A futuristic group study app built with React Native (Expo) for 3 college friends
+pursuing Diploma CSE at BTEUP, Semester 3.
+
+GitHub: https://github.com/Tauseef666-ctrl/T2S
+Live: http://localhost:8081
+
+---
+
+## Tech Stack
+
+- Framework: React Native with Expo SDK 57
+- Routing: expo-router (file-based navigation)
+- Language: TypeScript
+- Animations: React Native Animated API
+- Icons: @expo/vector-icons (Ionicons)
+- Gradients: expo-linear-gradient
+- Build: npx expo export --platform web
+- Server: npx serve -s dist -l 8081
+
+---
+
+## Screens (12 total)
+
+### Tab Navigation (5 tabs)
+
+1. Home (app/(tabs)/index.tsx)
+   - Animated T2S core logo with pulsating animation
+   - Floating orbs background
+   - Group progress card (68% Semester 3)
+   - Exam Prep + Videos quick actions
+   - Semester 3 subject cards with progress bars
+   - Back Papers subject cards with progress bars
+
+2. Study (app/(tabs)/study.tsx)
+   - 6 quick action buttons: Quiz, C Lab, Notes, Timer, Exam Prep, Videos
+   - Tab selector: Semester 3 / Back Papers
+   - Subject list with progress rings
+   - Study tips section
+
+3. Group (app/(tabs)/group.tsx)
+   - Group progress stats (Topics Done, Total, Quiz Score)
+   - Study groups (OS, DBMS, C Programming)
+   - Active challenges with progress bars
+   - Shared space (Notes, Tasks, Resources, Leaderboard)
+
+4. AI Chat (app/(tabs)/ai.tsx)
+   - Chat interface with typing indicator
+   - Pre-built responses for: OS scheduling, SQL JOINs, TCP vs UDP, C pointers, CSS Flexbox
+   - Quick prompt chips
+   - Smart fallback responses
+
+5. Profile (app/(tabs)/profile.tsx)
+   - 4 theme selector (Cyber Night, Obsidian, Midnight Aurora, Minimal Dark)
+   - Sound, Notifications, Offline Mode toggles
+   - Study Goals with progress bars
+   - App info (Version, Build, Board, Course)
+
+### Standalone Screens (7 screens)
+
+6. Subject Detail (app/subject/[id].tsx)
+   - Hero section with gradient
+   - Unit/topic stats
+   - Progress bar
+   - Quick actions (Quiz, Notes, Study Timer)
+   - Unit cards with progress
+   - Video lectures section (top 3 per subject)
+
+7. Unit Detail (app/subject/unit.tsx)
+   - Stats (Topics, Questions, Completion %)
+   - Topic checklist with completion state
+   - Start Study Session button
+   - Practice Quiz button
+
+8. Quiz (app/quiz.tsx)
+   - 8 MCQ questions across all subjects
+   - Difficulty badges (Easy/Medium/Hard)
+   - Answer feedback with explanations
+   - Progress bar
+   - Results screen with score/percentage
+
+9. C Programming Lab (app/lab.tsx)
+   - Futuristic terminal UI
+   - 4 code examples with output
+   - Copy button (with alert confirmation)
+   - 5 practice problems with difficulty/points
+   - C programming tips
+
+10. Notes (app/notes.tsx)
+    - Full CRUD (Create, Read, Update, Delete)
+    - Subject picker for new notes (OS, DBMS, Networking, C, Web)
+    - Search with real-time filtering
+    - Subject filter chips
+    - Star important notes
+    - Share notes with group
+    - Edit existing notes
+    - Delete notes
+    - Empty state message
+    - 5 pre-loaded sample notes
+
+11. Focus Timer (app/study/timer.tsx)
+    - Pomodoro modes: Focus (25min), Short Break (5min), Long Break (15min)
+    - Animated pulsating circle
+    - Progress ring
+    - Play/Pause/Reset controls
+    - Session stats (Sessions, Minutes, Points)
+
+12. Exam Prep (app/exam.tsx)
+    - Tab selector: Expected Questions / Question Papers
+    - Subject filter chips
+    - 20 expected questions with marks, difficulty, type
+    - Expandable answers
+    - Stats (Questions, Hard count, Total Marks)
+    - 8 question papers with download/open links
+    - Links open Google search for BTEUP papers
+
+13. Video Lectures (app/videos.tsx)
+    - Subject selector (all 9 subjects)
+    - Video cards with thumbnail, title, channel, duration
+    - Links open YouTube videos
+    - Subject info with video count
+
+---
+
+## Subjects
+
+### Semester 3 (5 subjects)
+
+1. Operating System (OS) — Cyan #00E5FF
+   - 5 units, 25 topics
+   - Process Management, CPU Scheduling, Memory, File System, Deadlocks
+
+2. Database Management System (DBMS) — Violet #7C4DFF
+   - 5 units, 25 topics
+   - SQL Basics, Advanced SQL, Transactions, Normalization
+
+3. Computer Networking (NET) — Green #00E676
+   - 5 units, 25 topics
+   - OSI Model, TCP/IP, IP Addressing, Transport Layer
+
+4. Computer Programming Using C (C) — Yellow #FFD600
+   - 5 units, 25 topics
+   - Basics, Functions, Pointers, Structures, Data Structures
+
+5. Web Technology (WEB) — Red #FF5252
+   - 5 units, 25 topics
+   - HTML, CSS, JavaScript, ES6, Web Security
+
+### Back Papers (4 subjects)
+
+6. Applied Mathematics (MATH) — Purple #BB86FC
+   - 2 units, 10 topics
+   - Calculus, Linear Algebra
+
+7. Applied Physics (PHY) — Teal #03DAC6
+   - 2 units, 10 topics
+   - Mechanics, Modern Physics
+
+8. Applied Chemistry (CHEM) — Pink #CF6679
+   - 1 unit, 5 topics
+   - Atomic Structure
+
+9. Communication Skills (COMM) — Orange #FFAB40
+   - 1 unit, 5 topics
+   - Communication Basics
+
+---
+
+## Themes (4)
+
+1. Cyber Night (default)
+   - Primary: #050505, Accent: #00E5FF, Secondary: #7C4DFF
+
+2. Obsidian
+   - Primary: #050505, Accent: #C0C0C0, Secondary: #4A90D9
+
+3. Midnight Aurora
+   - Primary: #050505, Accent: #00E5FF, Secondary: #BB86FC
+
+4. Minimal Dark
+   - Primary: #050505, Accent: #FFFFFF, Secondary: #4A6FA5
+
+---
+
+## Data Layer
+
+- src/data/index.ts — Subjects, Units, Friends, Quizzes, Notes, C Programs, Challenges
+- src/data/videos.ts — YouTube videos (9 subjects), Exam questions (20), Question papers (8)
+- src/hooks/useApp.tsx — AppProvider context (theme, sound, settings)
+- src/theme/index.ts — 4 theme definitions with all color tokens
+
+---
+
+## File Structure
+
+T2S/
+├── .gitignore
+├── README.md
+├── plan.md
+├── T2S.txt
+└── T2SApp/
+    ├── app.json
+    ├── package.json
+    ├── tsconfig.json
+    ├── index.ts
+    ├── app/
+    │   ├── _layout.tsx
+    │   ├── (tabs)/
+    │   │   ├── _layout.tsx
+    │   │   ├── index.tsx
+    │   │   ├── study.tsx
+    │   │   ├── group.tsx
+    │   │   ├── ai.tsx
+    │   │   └── profile.tsx
+    │   ├── subject/
+    │   │   ├── [id].tsx
+    │   │   └── unit.tsx
+    │   ├── study/
+    │   │   └── timer.tsx
+    │   ├── exam.tsx
+    │   ├── notes.tsx
+    │   ├── quiz.tsx
+    │   ├── lab.tsx
+    │   └── videos.tsx
+    ├── src/
+    │   ├── data/
+    │   │   ├── index.ts
+    │   │   └── videos.ts
+    │   ├── hooks/
+    │   │   └── useApp.tsx
+    │   └── theme/
+    │       └── index.ts
+    ├── assets/
+    │   ├── icon.png
+    │   ├── favicon.png
+    │   └── splash-icon.png
+    └── screenshots/
+        └── home.svg
+
+---
+
+## Build & Run
+
+# Install
+cd T2SApp && npm install
+
+# Dev server
+npx expo start --web
+
+# Production build
+npx expo export --platform web
+
+# Serve
+npx serve -s dist -l 8081
+
+---
+
+## Key Features
+
+- Notes CRUD — Create, edit, delete, star, share, search, filter by subject
+- Exam Prep — 20 expected questions + 8 question papers with Google search links
+- Video Lectures — YouTube links for all 9 subjects
+- Quiz — 8 MCQs with difficulty levels, explanations, results
+- C Lab — Terminal UI with code examples, copy, practice problems
+- Focus Timer — Pomodoro with session tracking
+- AI Chat — Smart responses for OS, SQL, Networking, C, CSS
+- 4 Themes — Switchable in real-time
+- Group Room — Study groups, challenges, shared space
+
+---
+
+Author: Tauseef — Diploma CSE, BTEUP, Semester 3
