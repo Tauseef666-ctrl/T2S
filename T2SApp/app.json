@@ -1,0 +1,41 @@
+{
+  "expo": {
+    "name": "T2S",
+    "slug": "t2s",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "scheme": "t2s",
+    "splash": {
+      "backgroundColor": "#050505",
+      "resizeMode": "contain"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.tauseef.t2s"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#050505",
+        "foregroundImage": "./assets/icon.png"
+      },
+      "package": "com.tauseef.t2s",
+      "versionCode": 1
+    },
+    "web": {
+      "favicon": "./assets/icon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-font",
+      "expo-router",
+      "expo-status-bar"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "t2s-app"
+      }
+    }
+  }
+}
