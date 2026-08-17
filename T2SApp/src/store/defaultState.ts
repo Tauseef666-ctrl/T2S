@@ -1,0 +1,50 @@
+import { AppState } from './types';
+import { SampleNotes } from '../data';
+
+export const defaultState: AppState = {
+  settings: {
+    theme: 'cyberNight',
+    soundEnabled: true,
+    notificationsEnabled: true,
+    offlineMode: false,
+    studyReminderTime: null,
+  },
+  topicProgress: {},
+  quizAttempts: [],
+  mistakes: [],
+  studyTodos: [],
+  groupTodos: [],
+  dailyPractice: [],
+  streak: {
+    currentStreak: 0,
+    longestStreak: 0,
+    lastStudyDate: null,
+    totalStudyDays: 0,
+    totalQuestionsSolved: 0,
+    totalTopicsCompleted: 0,
+    totalVideosWatched: 0,
+    totalNotesCreated: 0,
+    totalMockTests: 0,
+  },
+  videoProgress: {},
+  timerStats: {
+    totalSessions: 0,
+    totalMinutes: 0,
+    totalPoints: 0,
+    focusMinutes: 0,
+    breakMinutes: 0,
+  },
+  notes: SampleNotes.map((n) => ({
+    id: n.id,
+    title: n.title,
+    content: n.content,
+    subject: n.subject,
+    unit: n.unit,
+    tags: n.tags,
+    type: n.type,
+    createdAt: n.createdAt,
+    isImportant: n.isImportant,
+    isShared: n.isShared,
+  })),
+  lastUpdated: new Date().toISOString(),
+};

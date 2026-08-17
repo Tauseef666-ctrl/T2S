@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, Animated, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useApp } from '../../src/hooks/useApp';
-import { Semester3Subjects, BackPaperSubjects } from '../../src/data';
+import { Semester3Subjects, BackPaperSubjects, Friends } from '../../src/data';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -41,7 +41,7 @@ function FloatingOrb({ color, size, x, y, delay }: { color: string; size: number
   );
 }
 
-function SubjectCard({ subject, onPress }: { subject: any; onPress: () => void }) {
+function SubjectCard({ subject, onPress, topicProgress }: { subject: any; onPress: () => void; topicProgress: Record<string, any> }) {
   const { colors } = useApp();
   const scaleAnim = useRef(new Animated.Value(1)).current;
 
@@ -49,8 +49,10 @@ function SubjectCard({ subject, onPress }: { subject: any; onPress: () => void }
   const handlePressOut = () => Animated.spring(scaleAnim, { toValue: 1, useNativeDriver: true }).start();
 
   const totalTopics = subject.units.reduce((a: number, u: any) => a + u.totalTopics, 0);
-  const completedTopics = subject.units.reduce((a: number, u: any) => a + u.completedTopics, 0);
-  const progress = totalTopics > 0 ? completedTopics / totalTopics : 0;
+  const completedTopics = Object.values(topicProgress).filter(
+    (p: any) => p.status === 'completed' || p.status === 'mastered'
+  ).length;
+  const progress = totalTopics > 0 ? Math.min(completedTopics / totalTopics, 1) : 0;
 
   return (
     <TouchableOpacity onPress={onPress} onPressIn={handlePressIn} onPressOut={handlePressOut} activeOpacity={0.8}>
@@ -81,9 +83,33 @@ function SubjectCard({ subject, onPress }: { subject: any; onPress: () => void }
 }
 
 export default function HomeScreen() {
-  const { colors } = useApp();
+  const { colors, state } = useApp();
   const router = useRouter();
   const coreAnim = useRef(new Animated.Value(0)).current;
+
+  const { topicProgress, streak, dailyPractice, studyTodos } = state;
+
+  const totalTopicsInSyllabus = [...Semester3Subjects, ...BackPaperSubjects].reduce(
+    (acc, subject) => acc + subject.units.reduce((a: number, u: any) => a + u.totalTopics, 0), 0
+  );
+  const completedTopicsCount = Object.values(topicProgress).filter(
+    (p: any) => p.status === 'completed' || p.status === 'mastered'
+  ).length;
+  const overallProgress = totalTopicsInSyllabus > 0
+    ? Math.round((completedTopicsCount / totalTopicsInSyllabus) * 100)
+    : 0;
+
+  const today = new Date().toISOString().split('T')[0];
+  const todayPractice = dailyPractice.find(d => d.date === today);
+  const dailyGoalMet = todayPractice && todayPractice.questionsAttempted >= 20;
+
+  const pendingTodos = studyTodos.filter(t => !t.completed);
+  const nextTodo = pendingTodos.length > 0 ? pendingTodos[0] : null;
+
+  const recentProgress = Object.values(topicProgress)
+    .filter((p: any) => p.lastStudied)
+    .sort((a: any, b: any) => new Date(b.lastStudied).getTime() - new Date(a.lastStudied).getTime());
+  const lastStudied = recentProgress.length > 0 ? recentProgress[0] : null;
 
   useEffect(() => {
     Animated.loop(
@@ -100,6 +126,14 @@ export default function HomeScreen() {
       <FloatingOrb color={colors.accentSecondary} size={150} x={width - 120} y={300} delay={500} />
       <FloatingOrb color={colors.accent} size={100} x={50} y={500} delay={1000} />
       <FloatingOrb color={colors.accentSecondary} size={180} x={width - 180} y={150} delay={300} />
+
+      {/* Search Button */}
+      <TouchableOpacity
+        style={[styles.searchBtn, { backgroundColor: colors.card, borderColor: colors.border }]}
+        onPress={() => router.push('/search')}
+      >
+        <Ionicons name="search" size={20} color={colors.textSecondary} />
+      </TouchableOpacity>
 
       <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
         {/* T2S Core Logo */}
@@ -123,9 +157,76 @@ export default function HomeScreen() {
           {/* Group Progress */}
           <View style={[styles.groupProgressCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
             <Text style={[styles.groupProgressTitle, { color: colors.textSecondary }]}>GROUP PROGRESS</Text>
-            <Text style={[styles.groupProgressValue, { color: colors.accent }]}>68%</Text>
+            <Text style={[styles.groupProgressValue, { color: colors.accent }]}>{overallProgress}%</Text>
             <Text style={[styles.groupProgressSub, { color: colors.textSecondary }]}>Semester 3 Syllabus</Text>
           </View>
+
+          {/* Today's Goal + Streak Row */}
+          <View style={styles.infoRow}>
+            <View style={[styles.infoCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
+              <View style={styles.infoCardHeader}>
+                <Ionicons name="flag" size={16} color={dailyGoalMet ? colors.success : colors.warning} />
+                <Text style={[styles.infoCardLabel, { color: colors.textSecondary }]}>Today's Goal</Text>
+              </View>
+              <Text style={[styles.infoCardValue, { color: dailyGoalMet ? colors.success : colors.text }]}>
+                {todayPractice ? `${todayPractice.questionsAttempted}/20` : '0/20'}
+              </Text>
+              <Text style={[styles.infoCardSub, { color: colors.textSecondary }]}>
+                {dailyGoalMet ? 'Completed!' : 'Questions'}
+              </Text>
+            </View>
+            <View style={[styles.infoCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
+              <View style={styles.infoCardHeader}>
+                <Ionicons name="flame" size={16} color="#FF5252" />
+                <Text style={[styles.infoCardLabel, { color: colors.textSecondary }]}>Streak</Text>
+              </View>
+              <Text style={[styles.infoCardValue, { color: colors.text }]}>{streak.currentStreak}</Text>
+              <Text style={[styles.infoCardSub, { color: colors.textSecondary }]}>Days</Text>
+            </View>
+          </View>
+
+          {/* Continue Studying */}
+          {lastStudied && (
+            <TouchableOpacity
+              style={[styles.continueCard, { backgroundColor: colors.card, borderColor: colors.border }]}
+              onPress={() => router.push('/study/todos')}
+              activeOpacity={0.8}
+            >
+              <LinearGradient
+                colors={[colors.accent + '12', 'transparent']}
+                style={styles.continueGradient}
+              >
+                <Ionicons name="play-circle" size={28} color={colors.accent} />
+                <View style={styles.continueInfo}>
+                  <Text style={[styles.continueLabel, { color: colors.textSecondary }]}>Continue Studying</Text>
+                  <Text style={[styles.continueTitle, { color: colors.text }]} numberOfLines={1}>
+                    {lastStudied.topicId.replace('-', ' ').toUpperCase()}
+                  </Text>
+                </View>
+                <Ionicons name="chevron-forward" size={20} color={colors.textSecondary} />
+              </LinearGradient>
+            </TouchableOpacity>
+          )}
+
+          {/* Next Todo */}
+          {nextTodo && (
+            <TouchableOpacity
+              style={[styles.todoReminderCard, { backgroundColor: colors.card, borderColor: colors.border }]}
+              onPress={() => router.push('/study/todos')}
+              activeOpacity={0.8}
+            >
+              <Ionicons name="checkbox-outline" size={20} color={colors.accentSecondary} />
+              <View style={styles.todoReminderInfo}>
+                <Text style={[styles.todoReminderLabel, { color: colors.textSecondary }]}>Up Next</Text>
+                <Text style={[styles.todoReminderTitle, { color: colors.text }]} numberOfLines={1}>{nextTodo.title}</Text>
+              </View>
+              <View style={[styles.todoReminderBadge, { backgroundColor: colors.accentSecondary + '15' }]}>
+                <Text style={[styles.todoReminderBadgeText, { color: colors.accentSecondary }]}>
+                  {pendingTodos.length} pending
+                </Text>
+              </View>
+            </TouchableOpacity>
+          )}
 
           {/* Quick Actions */}
           <View style={styles.quickActionsRow}>
@@ -142,6 +243,34 @@ export default function HomeScreen() {
               <Text style={[styles.quickActionSub, { color: colors.textSecondary }]}>Best tutorials</Text>
             </TouchableOpacity>
           </View>
+
+          {/* Daily 20 */}
+          <TouchableOpacity
+            style={[styles.daily20Card, { backgroundColor: colors.card, borderColor: colors.border }]}
+            onPress={() => router.push('/quiz')}
+            activeOpacity={0.8}
+          >
+            <LinearGradient
+              colors={[colors.success + '18', 'transparent']}
+              style={styles.daily20Gradient}
+            >
+              <View style={styles.daily20Left}>
+                <View style={[styles.daily20Icon, { backgroundColor: colors.success + '20' }]}>
+                  <Ionicons name="code-slash" size={24} color={colors.success} />
+                </View>
+                <View>
+                  <Text style={[styles.daily20Title, { color: colors.text }]}>Daily 20</Text>
+                  <Text style={[styles.daily20Sub, { color: colors.textSecondary }]}>Solve 20 MCQs daily</Text>
+                </View>
+              </View>
+              <View style={styles.daily20Right}>
+                <Text style={[styles.daily20Count, { color: colors.success }]}>
+                  {todayPractice?.questionsAttempted || 0}/20
+                </Text>
+                <Ionicons name="chevron-forward" size={18} color={colors.textSecondary} />
+              </View>
+            </LinearGradient>
+          </TouchableOpacity>
         </View>
 
         {/* Semester 3 Subjects */}
@@ -154,7 +283,7 @@ export default function HomeScreen() {
           </View>
           <View style={styles.subjectsGrid}>
             {Semester3Subjects.map(s => (
-              <SubjectCard key={s.id} subject={s} onPress={() => router.push(`/subject/${s.id}`)} />
+              <SubjectCard key={s.id} subject={s} onPress={() => router.push(`/subject/${s.id}`)} topicProgress={topicProgress} />
             ))}
           </View>
         </View>
@@ -169,7 +298,7 @@ export default function HomeScreen() {
           </View>
           <View style={styles.subjectsGrid}>
             {BackPaperSubjects.map(s => (
-              <SubjectCard key={s.id} subject={s} onPress={() => router.push(`/subject/${s.id}`)} />
+              <SubjectCard key={s.id} subject={s} onPress={() => router.push(`/subject/${s.id}`)} topicProgress={topicProgress} />
             ))}
           </View>
         </View>
@@ -183,6 +312,12 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1 },
   scroll: { flex: 1, paddingTop: 60 },
+  searchBtn: {
+    position: 'absolute', top: 56, right: 20, zIndex: 10,
+    width: 44, height: 44, borderRadius: 14,
+    alignItems: 'center', justifyContent: 'center',
+    borderWidth: 1, elevation: 4,
+  },
   coreSection: { alignItems: 'center', paddingHorizontal: 20, marginBottom: 20 },
   coreLogo: { marginBottom: 20 },
   coreGradient: {
@@ -209,10 +344,72 @@ const styles = StyleSheet.create({
   groupProgressTitle: { fontSize: 12, letterSpacing: 2, fontWeight: '600' },
   groupProgressValue: { fontSize: 48, fontWeight: '900', marginVertical: 4 },
   groupProgressSub: { fontSize: 13 },
-  quickActionsRow: { flexDirection: 'row', gap: 12, marginTop: 16 },
+  infoRow: { flexDirection: 'row', gap: 10, width: '100%', marginTop: 16 },
+  infoCard: {
+    flex: 1,
+    padding: 14,
+    borderRadius: 14,
+    borderWidth: 1,
+    alignItems: 'center',
+  },
+  infoCardHeader: { flexDirection: 'row', alignItems: 'center', gap: 4, marginBottom: 6 },
+  infoCardLabel: { fontSize: 11, fontWeight: '600' },
+  infoCardValue: { fontSize: 28, fontWeight: '900' },
+  infoCardSub: { fontSize: 11, marginTop: 2 },
+  continueCard: {
+    width: '100%',
+    borderRadius: 14,
+    borderWidth: 1,
+    marginTop: 12,
+    overflow: 'hidden',
+  },
+  continueGradient: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 14,
+    gap: 12,
+  },
+  continueInfo: { flex: 1 },
+  continueLabel: { fontSize: 11, fontWeight: '500' },
+  continueTitle: { fontSize: 14, fontWeight: '700' },
+  todoReminderCard: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 14,
+    borderRadius: 14,
+    borderWidth: 1,
+    marginTop: 10,
+    gap: 12,
+  },
+  todoReminderInfo: { flex: 1 },
+  todoReminderLabel: { fontSize: 11, fontWeight: '500' },
+  todoReminderTitle: { fontSize: 14, fontWeight: '700' },
+  todoReminderBadge: { paddingHorizontal: 10, paddingVertical: 4, borderRadius: 10 },
+  todoReminderBadgeText: { fontSize: 11, fontWeight: '700' },
+  quickActionsRow: { flexDirection: 'row', gap: 12, marginTop: 16, width: '100%' },
   quickActionCard: { flex: 1, alignItems: 'center', padding: 16, borderRadius: 14, borderWidth: 1, gap: 6 },
   quickActionTitle: { fontSize: 13, fontWeight: '700' },
   quickActionSub: { fontSize: 11 },
+  daily20Card: {
+    width: '100%',
+    borderRadius: 14,
+    borderWidth: 1,
+    marginTop: 12,
+    overflow: 'hidden',
+  },
+  daily20Gradient: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: 16,
+  },
+  daily20Left: { flexDirection: 'row', alignItems: 'center', gap: 12 },
+  daily20Icon: { width: 44, height: 44, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
+  daily20Title: { fontSize: 15, fontWeight: '700' },
+  daily20Sub: { fontSize: 11, marginTop: 2 },
+  daily20Right: { alignItems: 'flex-end', gap: 4 },
+  daily20Count: { fontSize: 16, fontWeight: '800' },
   section: { paddingHorizontal: 20, marginTop: 28 },
   sectionHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 },
   sectionTitle: { fontSize: 20, fontWeight: '700' },

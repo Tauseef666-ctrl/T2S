@@ -48,6 +48,8 @@ export interface Note {
   content: string;
   subject: string;
   unit: string;
+  tags: string[];
+  type: 'personal' | 'study';
   createdAt: string;
   isImportant: boolean;
   isShared: boolean;
@@ -562,6 +564,8 @@ export const SampleNotes: Note[] = [
     content: 'Process scheduling is the activity of the process manager that handles the removal of the running process from CPU and the selection of another process.\n\nTypes: Preemptive, Non-preemptive\nAlgorithms: FCFS, SJF, Round Robin, Priority, Multilevel Queue',
     subject: 'os',
     unit: 'os-u2',
+    tags: ['scheduling', 'os', 'important'],
+    type: 'study',
     createdAt: '2026-08-10',
     isImportant: true,
     isShared: true,
@@ -572,6 +576,8 @@ export const SampleNotes: Note[] = [
     content: 'INNER JOIN — Returns matching rows from both tables\nLEFT JOIN — Returns all rows from left table\nRIGHT JOIN — Returns all rows from right table\nFULL JOIN — Returns all rows when there is a match\nCROSS JOIN — Returns Cartesian product',
     subject: 'dbms',
     unit: 'dbms-u2',
+    tags: ['sql', 'joins', 'dbms'],
+    type: 'study',
     createdAt: '2026-08-12',
     isImportant: false,
     isShared: true,
@@ -582,6 +588,8 @@ export const SampleNotes: Note[] = [
     content: 'TCP: Connection-oriented, reliable, ordered, slower\nUDP: Connectionless, unreliable, unordered, faster\n\nTCP uses 3-way handshake: SYN, SYN-ACK, ACK\nUDP is used in video streaming, gaming, DNS',
     subject: 'networking',
     unit: 'net-u4',
+    tags: ['tcp', 'udp', 'networking'],
+    type: 'study',
     createdAt: '2026-08-14',
     isImportant: true,
     isShared: false,
@@ -592,6 +600,8 @@ export const SampleNotes: Note[] = [
     content: 'A pointer is a variable that stores the address of another variable.\n\nSyntax: int *ptr = &var;\nDereference: *ptr\nPointer arithmetic: ptr++, ptr--\n\nDynamic memory: malloc(), calloc(), free()',
     subject: 'c',
     unit: 'c-u3',
+    tags: ['pointers', 'c', 'memory'],
+    type: 'study',
     createdAt: '2026-08-15',
     isImportant: true,
     isShared: true,
@@ -602,7 +612,33 @@ export const SampleNotes: Note[] = [
     content: 'display: flex;\njustify-content: center | space-between | space-around\nalign-items: center | flex-start | flex-end\nflex-direction: row | column\nflex-wrap: wrap | nowrap',
     subject: 'web',
     unit: 'web-u2',
+    tags: ['css', 'flexbox', 'layout'],
+    type: 'study',
     createdAt: '2026-08-16',
+    isImportant: false,
+    isShared: false,
+  },
+  {
+    id: 'n6',
+    title: 'Exam Strategy Reminder',
+    content: 'Start with easy questions first. Allocate 1.5 min per MCQ. Leave time for revision. Focus on OS and DBMS — highest weightage.',
+    subject: '',
+    unit: '',
+    tags: ['exam', 'strategy'],
+    type: 'personal',
+    createdAt: '2026-08-16',
+    isImportant: true,
+    isShared: false,
+  },
+  {
+    id: 'n7',
+    title: 'Weekly Goals',
+    content: 'Complete OS Unit 5\nRevise SQL queries\nPractice 5 C programs\nWatch networking videos\nTake 2 mock tests',
+    subject: '',
+    unit: '',
+    tags: ['goals', 'weekly'],
+    type: 'personal',
+    createdAt: '2026-08-17',
     isImportant: false,
     isShared: false,
   },

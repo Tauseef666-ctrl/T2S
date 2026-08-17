@@ -1,273 +1,1504 @@
-T2S — Three Friends. One Journey.
+T2S — Final Functional Upgrade & Complete Study System
 
-A futuristic group study app built with React Native (Expo) for 3 college friends
-pursuing Diploma CSE at BTEUP, Semester 3.
+You are working on the existing T2S React Native + Expo application. This is an upgrade of the current project, NOT a rebuild from scratch.
 
-GitHub: https://github.com/Tauseef666-ctrl/T2S
-Live: http://localhost:8081
+Repository:
 
----
+https://github.com/Tauseef666-ctrl/T2S
 
-## Tech Stack
+Current development URL:
 
-- Framework: React Native with Expo SDK 57
-- Routing: expo-router (file-based navigation)
-- Language: TypeScript
-- Animations: React Native Animated API
-- Icons: @expo/vector-icons (Ionicons)
-- Gradients: expo-linear-gradient
-- Build: npx expo export --platform web
-- Server: npx serve -s dist -l 8081
+http://localhost:8081
 
----
+T2S stands for:
 
-## Screens (12 total)
+Three Friends. One Journey.
 
-### Tab Navigation (5 tabs)
+It is a group-study application for three students pursuing:
 
-1. Home (app/(tabs)/index.tsx)
-   - Animated T2S core logo with pulsating animation
-   - Floating orbs background
-   - Group progress card (68% Semester 3)
-   - Exam Prep + Videos quick actions
-   - Semester 3 subject cards with progress bars
-   - Back Papers subject cards with progress bars
+2-Year Lateral Entry Diploma in Computer Science & Engineering
+Board: BTEUP
+Current Semester: 3
 
-2. Study (app/(tabs)/study.tsx)
-   - 6 quick action buttons: Quiz, C Lab, Notes, Timer, Exam Prep, Videos
-   - Tab selector: Semester 3 / Back Papers
-   - Subject list with progress rings
-   - Study tips section
+The existing application already contains the 3D futuristic interface, navigation, subjects, notes, quiz, AI chat, C Lab, videos, exam preparation, themes, group features and timer.
 
-3. Group (app/(tabs)/group.tsx)
-   - Group progress stats (Topics Done, Total, Quiz Score)
-   - Study groups (OS, DBMS, C Programming)
-   - Active challenges with progress bars
-   - Shared space (Notes, Tasks, Resources, Leaderboard)
-
-4. AI Chat (app/(tabs)/ai.tsx)
-   - Chat interface with typing indicator
-   - Pre-built responses for: OS scheduling, SQL JOINs, TCP vs UDP, C pointers, CSS Flexbox
-   - Quick prompt chips
-   - Smart fallback responses
-
-5. Profile (app/(tabs)/profile.tsx)
-   - 4 theme selector (Cyber Night, Obsidian, Midnight Aurora, Minimal Dark)
-   - Sound, Notifications, Offline Mode toggles
-   - Study Goals with progress bars
-   - App info (Version, Build, Board, Course)
-
-### Standalone Screens (7 screens)
-
-6. Subject Detail (app/subject/[id].tsx)
-   - Hero section with gradient
-   - Unit/topic stats
-   - Progress bar
-   - Quick actions (Quiz, Notes, Study Timer)
-   - Unit cards with progress
-   - Video lectures section (top 3 per subject)
-
-7. Unit Detail (app/subject/unit.tsx)
-   - Stats (Topics, Questions, Completion %)
-   - Topic checklist with completion state
-   - Start Study Session button
-   - Practice Quiz button
-
-8. Quiz (app/quiz.tsx)
-   - 8 MCQ questions across all subjects
-   - Difficulty badges (Easy/Medium/Hard)
-   - Answer feedback with explanations
-   - Progress bar
-   - Results screen with score/percentage
-
-9. C Programming Lab (app/lab.tsx)
-   - Futuristic terminal UI
-   - 4 code examples with output
-   - Copy button (with alert confirmation)
-   - 5 practice problems with difficulty/points
-   - C programming tips
-
-10. Notes (app/notes.tsx)
-    - Full CRUD (Create, Read, Update, Delete)
-    - Subject picker for new notes (OS, DBMS, Networking, C, Web)
-    - Search with real-time filtering
-    - Subject filter chips
-    - Star important notes
-    - Share notes with group
-    - Edit existing notes
-    - Delete notes
-    - Empty state message
-    - 5 pre-loaded sample notes
-
-11. Focus Timer (app/study/timer.tsx)
-    - Pomodoro modes: Focus (25min), Short Break (5min), Long Break (15min)
-    - Animated pulsating circle
-    - Progress ring
-    - Play/Pause/Reset controls
-    - Session stats (Sessions, Minutes, Points)
-
-12. Exam Prep (app/exam.tsx)
-    - Tab selector: Expected Questions / Question Papers
-    - Subject filter chips
-    - 20 expected questions with marks, difficulty, type
-    - Expandable answers
-    - Stats (Questions, Hard count, Total Marks)
-    - 8 question papers with download/open links
-    - Links open Google search for BTEUP papers
-
-13. Video Lectures (app/videos.tsx)
-    - Subject selector (all 9 subjects)
-    - Video cards with thumbnail, title, channel, duration
-    - Links open YouTube videos
-    - Subject info with video count
+Your job is to turn the existing application into a fully functional, comprehensive CSE study platform.
 
 ---
 
-## Subjects
+1. DO NOT DESTROY THE EXISTING APP
 
-### Semester 3 (5 subjects)
+Preserve:
 
-1. Operating System (OS) — Cyan #00E5FF
-   - 5 units, 25 topics
-   - Process Management, CPU Scheduling, Memory, File System, Deadlocks
+- Existing T2S branding
+- Existing dark futuristic design
+- 3D/animated interface
+- Existing navigation
+- Existing 4 themes
+- Existing subject structure
+- Existing group-study concept
+- Existing notes system
+- Existing AI chat
+- Existing C Lab
+- Existing quiz system
+- Existing timer
+- Existing videos
+- Existing exam preparation
+- Existing progress system
 
-2. Database Management System (DBMS) — Violet #7C4DFF
-   - 5 units, 25 topics
-   - SQL Basics, Advanced SQL, Transactions, Normalization
+Do not replace functional features with placeholders.
 
-3. Computer Networking (NET) — Green #00E676
-   - 5 units, 25 topics
-   - OSI Model, TCP/IP, IP Addressing, Transport Layer
+Improve them.
 
-4. Computer Programming Using C (C) — Yellow #FFD600
-   - 5 units, 25 topics
-   - Basics, Functions, Pointers, Structures, Data Structures
+Fix broken functionality instead of hiding it.
 
-5. Web Technology (WEB) — Red #FF5252
-   - 5 units, 25 topics
-   - HTML, CSS, JavaScript, ES6, Web Security
-
-### Back Papers (4 subjects)
-
-6. Applied Mathematics (MATH) — Purple #BB86FC
-   - 2 units, 10 topics
-   - Calculus, Linear Algebra
-
-7. Applied Physics (PHY) — Teal #03DAC6
-   - 2 units, 10 topics
-   - Mechanics, Modern Physics
-
-8. Applied Chemistry (CHEM) — Pink #CF6679
-   - 1 unit, 5 topics
-   - Atomic Structure
-
-9. Communication Skills (COMM) — Orange #FFAB40
-   - 1 unit, 5 topics
-   - Communication Basics
+Do not create duplicate screens when an existing screen can be upgraded.
 
 ---
 
-## Themes (4)
+2. ACADEMIC STRUCTURE
 
-1. Cyber Night (default)
-   - Primary: #050505, Accent: #00E5FF, Secondary: #7C4DFF
+Semester 3
 
-2. Obsidian
-   - Primary: #050505, Accent: #C0C0C0, Secondary: #4A90D9
+1. Operating System
 
-3. Midnight Aurora
-   - Primary: #050505, Accent: #00E5FF, Secondary: #BB86FC
+Units/topics should cover areas such as:
 
-4. Minimal Dark
-   - Primary: #050505, Accent: #FFFFFF, Secondary: #4A6FA5
+- Operating-system fundamentals
+- Processes
+- Process states
+- Process scheduling
+- CPU scheduling algorithms
+- Threads
+- Synchronization
+- Deadlocks
+- Memory management
+- Virtual memory
+- File systems
+- I/O concepts
+- Protection/security concepts
+
+2. Database Management System
+
+Cover:
+
+- Database fundamentals
+- DBMS architecture
+- ER model
+- Relational model
+- Keys
+- SQL
+- DDL
+- DML
+- DCL
+- TCL
+- SELECT queries
+- WHERE
+- GROUP BY
+- HAVING
+- ORDER BY
+- JOINs
+- Subqueries
+- Transactions
+- Concurrency
+- Normalization
+- Functional dependencies
+- Database security
+
+3. Computer Networking
+
+Cover:
+
+- Networking fundamentals
+- Network types
+- Topologies
+- OSI model
+- TCP/IP model
+- Physical/data-link/network/transport/application concepts
+- IP addressing
+- IPv4
+- IPv6
+- Subnetting fundamentals
+- Routing
+- TCP
+- UDP
+- Ports
+- DNS
+- HTTP/HTTPS
+- Network devices
+- Network security fundamentals
+
+4. Computer Programming Using C
+
+Cover:
+
+- C fundamentals
+- Structure of C programs
+- Variables
+- Data types
+- Operators
+- Input/output
+- Conditional statements
+- Loops
+- Arrays
+- Strings
+- Functions
+- Recursion
+- Pointers
+- Structures
+- Unions
+- File handling
+- Dynamic memory concepts
+- Basic data structures
+- Searching
+- Sorting
+
+5. Web Technology
+
+Cover:
+
+- Internet/web fundamentals
+- HTML
+- HTML elements
+- Forms
+- Tables
+- Multimedia
+- CSS
+- Selectors
+- Box model
+- Flexbox
+- Grid
+- Responsive design
+- JavaScript fundamentals
+- Variables
+- Functions
+- Arrays
+- Objects
+- DOM
+- Events
+- ES6 concepts
+- Basic web security
+
+IMPORTANT:
+
+Do not claim that the above list is the exact official BTEUP syllabus unless it has been verified against an official BTEUP syllabus source.
+
+The application's content architecture must allow the verified syllabus to replace or modify these topics later.
 
 ---
 
-## Data Layer
+3. BACK PAPER SYSTEM
 
-- src/data/index.ts — Subjects, Units, Friends, Quizzes, Notes, C Programs, Challenges
-- src/data/videos.ts — YouTube videos (9 subjects), Exam questions (20), Question papers (8)
-- src/hooks/useApp.tsx — AppProvider context (theme, sound, settings)
-- src/theme/index.ts — 4 theme definitions with all color tokens
+Create a dedicated:
 
----
+BACK PAPER PREPARATION CENTER
 
-## File Structure
+Subjects:
 
-T2S/
-├── .gitignore
-├── README.md
-├── plan.md
-├── T2S.txt
-└── T2SApp/
-    ├── app.json
-    ├── package.json
-    ├── tsconfig.json
-    ├── index.ts
-    ├── app/
-    │   ├── _layout.tsx
-    │   ├── (tabs)/
-    │   │   ├── _layout.tsx
-    │   │   ├── index.tsx
-    │   │   ├── study.tsx
-    │   │   ├── group.tsx
-    │   │   ├── ai.tsx
-    │   │   └── profile.tsx
-    │   ├── subject/
-    │   │   ├── [id].tsx
-    │   │   └── unit.tsx
-    │   ├── study/
-    │   │   └── timer.tsx
-    │   ├── exam.tsx
-    │   ├── notes.tsx
-    │   ├── quiz.tsx
-    │   ├── lab.tsx
-    │   └── videos.tsx
-    ├── src/
-    │   ├── data/
-    │   │   ├── index.ts
-    │   │   └── videos.ts
-    │   ├── hooks/
-    │   │   └── useApp.tsx
-    │   └── theme/
-    │       └── index.ts
-    ├── assets/
-    │   ├── icon.png
-    │   ├── favicon.png
-    │   └── splash-icon.png
-    └── screenshots/
-        └── home.svg
+1. Applied Mathematics
+2. Applied Physics
+3. Applied Chemistry
+4. Communication Skills
+
+Each subject must have:
+
+- Unit-wise syllabus
+- Topic notes
+- Important formulas/concepts
+- Short notes
+- Detailed notes
+- MCQs
+- Previous-style questions
+- Practice tests
+- Revision mode
+- Progress tracking
+- Video resources
+- Important questions
+
+Clearly distinguish:
+
+SEMESTER 3
+
+from
+
+1ST YEAR BACK PAPERS
 
 ---
 
-## Build & Run
+4. GOVERNMENT-EXAM-STYLE QUESTION ENGINE
 
-# Install
-cd T2SApp && npm install
+This is one of the most important upgrades.
 
-# Dev server
+Create a dedicated:
+
+EXAM MODE
+
+Questions should resemble the objective/competitive-exam style commonly used in government technical examinations, while keeping the content appropriate to the Diploma CSE syllabus.
+
+Include:
+
+Question Types
+
+- MCQ
+- True/False
+- Fill in the blank
+- Match the following
+- Assertion/Reason where appropriate
+- Numerical/problem-solving questions where appropriate
+- Code-output questions for C
+- SQL-output questions for DBMS
+- Networking scenario questions
+
+Do NOT claim that generated questions are actual government exam questions.
+
+Clearly label generated questions as:
+
+Practice Question
+
+and actual verified papers as:
+
+Previous-Year / Official Paper
+
+---
+
+5. MARKING SYSTEM
+
+Implement configurable exam marking.
+
+Each test should define:
+
+- Total questions
+- Marks per question
+- Negative marking
+- Maximum marks
+- Passing percentage
+- Time limit
+
+Example:
+
+50 Questions × 2 Marks = 100 Marks
+
+Example negative marking:
+
+−0.25 for each incorrect answer
+
+But do not assume this is the official marking scheme for BTEUP or any specific government examination.
+
+Make the marking system configurable.
+
+The test engine should calculate:
+
+Correct Answers
+Wrong Answers
+Unattempted
+Positive Marks
+Negative Marks
+Final Score
+Percentage
+Accuracy
+Time Used
+
+Formula:
+
+"Final Score = Positive Marks − Negative Marks"
+
+---
+
+6. REAL EXAM SIMULATION
+
+Add:
+
+FULL MOCK TEST
+
+Example:
+
+BTEUP CSE Practice Mock — Semester 3
+
+- 50 questions
+- 60-minute timer
+- Randomized questions
+- Randomized options
+- Subject selection
+- Unit selection
+- Difficulty selection
+- Marking configuration
+
+At submission show:
+
+RESULT
+
+Score: 74/100
+Percentage: 74%
+Accuracy: 81%
+Correct: 37
+Wrong: 8
+Skipped: 5
+
+Then show:
+
+Weak Topics
+
+- CPU Scheduling
+- SQL JOINs
+- IP Addressing
+
+Strong Topics
+
+- Processes
+- HTML
+- C Functions
+
+---
+
+7. QUESTION BANK
+
+Create a large structured question bank.
+
+Organize:
+
+Subject → Unit → Topic → Difficulty → Question Type
+
+Difficulty:
+
+- Easy
+- Medium
+- Hard
+
+Question metadata:
+
+Question ID
+Subject
+Unit
+Topic
+Question
+Options
+Correct Answer
+Explanation
+Difficulty
+Marks
+Negative Marks
+Source
+Year
+Tags
+
+Never invent a year/source for a question.
+
+If generated by the app:
+
+"Source: T2S Practice"
+
+If verified from an official paper:
+
+"Source: Official/Verified"
+
+---
+
+8. QUESTION EXPLANATIONS
+
+Every practice question should have an explanation.
+
+After answering:
+
+Correct
+
+or
+
+Incorrect
+
+Then:
+
+Explanation
+
+Explain why the answer is correct.
+
+For programming questions, explain the code.
+
+For DBMS questions, explain the SQL/query logic.
+
+For networking questions, explain the protocol/concept.
+
+For mathematics/physics, show the calculation where applicable.
+
+---
+
+9. DAILY PRACTICE
+
+Add:
+
+DAILY 20
+
+Every day generate/select 20 questions.
+
+Mix:
+
+- Semester 3 subjects
+- Back papers
+- Weak topics
+- Previously incorrect questions
+
+Track:
+
+Today's Score
+
+Current Streak
+
+Questions Solved
+
+Accuracy
+
+---
+
+10. WRONG ANSWER NOTEBOOK
+
+Create:
+
+MY MISTAKES
+
+Whenever a student gets a question wrong, automatically allow:
+
+Save to Mistakes
+
+Store:
+
+- Question
+- Correct answer
+- Student's answer
+- Explanation
+- Subject
+- Topic
+
+Allow:
+
+Practice My Mistakes
+
+This should generate a quiz containing only previously incorrect questions.
+
+---
+
+11. REVISION SYSTEM
+
+Create:
+
+SMART REVISION
+
+Each topic should have:
+
+- Not Started
+- Learning
+- Completed
+- Needs Revision
+- Mastered
+
+Allow the user to mark topics manually.
+
+Also calculate revision recommendations based on:
+
+- Low quiz scores
+- Incorrect answers
+- Long time since last revision
+- Incomplete topics
+
+Example:
+
+«🔄 Recommended Revision
+DBMS — Normalization
+Your recent accuracy: 52%»
+
+---
+
+12. COMPLETE WRITTEN NOTES
+
+The current Notes feature should be expanded substantially.
+
+Create two different note types:
+
+PERSONAL NOTES
+
+Notes written by the student.
+
+Features:
+
+- Create
+- Edit
+- Delete
+- Search
+- Star
+- Subject
+- Unit
+- Topic
+- Tags
+- Share with group
+
+STUDY NOTES
+
+Structured educational content provided inside T2S.
+
+Study notes should contain:
+
+- Definition
+- Explanation
+- Important points
+- Examples
+- Diagrams where appropriate
+- Exam points
+- Common mistakes
+- Quick revision
+- Questions
+
+---
+
+13. NOTE EDITOR
+
+Build a proper note editor.
+
+Support:
+
+- Headings
+- Bold
+- Italic
+- Lists
+- Code blocks
+- Mathematical expressions where possible
+- Highlighting
+- Tags
+- Subject
+- Unit
+- Topic
+- Attachments
+
+Auto-save drafts locally.
+
+---
+
+14. VIDEO LEARNING SYSTEM
+
+The existing Video Lectures page must be expanded.
+
+Do not simply add random videos.
+
+For every subject, provide multiple useful learning resources organized by topic.
+
+Structure:
+
+Subject → Unit → Topic → Videos
+
+Example:
+
+DBMS:
+
+- DBMS introduction
+- ER model
+- SQL basics
+- SELECT
+- JOIN
+- Normalization
+- Transactions
+
+Operating System:
+
+- Processes
+- Scheduling
+- Deadlocks
+- Memory
+- File systems
+
+Networking:
+
+- OSI
+- TCP/IP
+- IP addressing
+- TCP vs UDP
+- Routing
+- DNS
+
+C:
+
+- Basics
+- Loops
+- Arrays
+- Functions
+- Pointers
+- Structures
+- File handling
+
+Web:
+
+- HTML
+- CSS
+- Flexbox
+- JavaScript
+- DOM
+- ES6
+
+Back-paper subjects should also receive appropriate educational videos.
+
+---
+
+15. VIDEO QUALITY SYSTEM
+
+Every video card should contain:
+
+- Thumbnail
+- Title
+- Channel
+- Duration if available
+- Subject
+- Unit
+- Topic
+- Difficulty
+- Language
+- Watch button
+
+Add:
+
+Watch Later
+
+Completed
+
+Important
+
+Track video progress locally.
+
+Avoid hardcoding broken YouTube URLs.
+
+If a direct video cannot be reliably verified, use a relevant YouTube search link rather than inventing a video URL.
+
+---
+
+16. STUDY PATH
+
+Create:
+
+LEARNING PATH
+
+For each subject:
+
+START → LEARN → PRACTICE → QUIZ → REVISE → MASTER
+
+Example:
+
+DBMS
+
+1. Learn DBMS Basics
+2. Watch lesson
+3. Read notes
+4. Solve 10 questions
+5. Take unit quiz
+6. Review mistakes
+7. Mark topic mastered
+
+This should make T2S feel like a complete learning system rather than a collection of pages.
+
+---
+
+17. STUDY TODO SYSTEM
+
+Add:
+
+MY STUDY TODO
+
+Allow students to create tasks:
+
+Example:
+
+- Finish OS Unit 1
+- Watch DBMS SQL lecture
+- Practice 10 C programs
+- Revise networking
+- Solve previous questions
+- Complete back-paper mathematics chapter
+
+Each task should support:
+
+- Title
+- Subject
+- Unit
+- Priority
+- Due date
+- Completion
+- Reminder
+- Friend/group assignment
+
+Add:
+
+Today
+
+Upcoming
+
+Completed
+
+---
+
+18. GROUP TODO
+
+The three friends should be able to create shared tasks.
+
+Example:
+
+GROUP TASK
+
+«Complete DBMS Unit 2 before Sunday.»
+
+Assign:
+
+- Friend 1
+- Friend 2
+- Friend 3
+
+Show:
+
+2/3 completed
+
+Use animated progress.
+
+---
+
+19. STUDY STREAK
+
+Track:
+
+- Daily study streak
+- Weekly study time
+- Questions solved
+- Topics completed
+- Videos watched
+- Notes created
+- Mock tests completed
+
+Create a beautiful 3D/animated streak visualization.
+
+---
+
+20. SUBJECT PROGRESS
+
+Calculate progress dynamically instead of using fake static values.
+
+For example:
+
+Topic completion
++
+Quiz performance
++
+Study activity
++
+Revision status
+
+Use a clear formula and keep it consistent.
+
+The Home page should update automatically when the user studies.
+
+Do not display hardcoded:
+
+"68%"
+
+if actual user progress is available.
+
+---
+
+21. FUNCTIONALITY AUDIT
+
+Go through EVERY existing screen.
+
+Test:
+
+Home
+
+- Subject navigation
+- Progress
+- Quick actions
+- Back-paper navigation
+
+Study
+
+- Every action works
+- Subject filtering works
+- Progress updates
+
+Group
+
+- Challenges
+- Shared resources
+- Group progress
+- Tasks
+
+AI
+
+- Chat
+- Typing animation
+- Quick prompts
+- Response system
+
+Profile
+
+- Themes
+- Settings
+- Sound
+- Notifications
+- Offline mode
+
+Subject
+
+- Units
+- Topics
+- Progress
+- Quiz
+- Notes
+- Videos
+
+Quiz
+
+- Questions
+- Answer selection
+- Scoring
+- Timer
+- Results
+- Review
+
+C Lab
+
+- Code examples
+- Copy
+- Practice
+- Output
+
+Notes
+
+- Create
+- Edit
+- Delete
+- Search
+- Filter
+- Star
+- Share
+
+Timer
+
+- Start
+- Pause
+- Resume
+- Reset
+- Mode switching
+- Statistics
+
+Exam
+
+- Filters
+- Questions
+- Answers
+- Mock test
+- Marking
+- Results
+
+Videos
+
+- Subject filter
+- Topic filter
+- Watch
+- Watch Later
+- Completed
+
+Nothing should be a fake button.
+
+---
+
+22. OFFLINE-FIRST DATA
+
+Use local persistence for:
+
+- Notes
+- Todos
+- Progress
+- Quiz history
+- Wrong answers
+- Study streak
+- Timer statistics
+- Settings
+- Theme
+- Completed videos
+- Completed topics
+
+Use an appropriate Expo-compatible persistence solution.
+
+The app should retain data after closing and reopening.
+
+---
+
+23. CONTENT ARCHITECTURE
+
+Do not put hundreds of questions and notes directly inside UI components.
+
+Create structured data/content files.
+
+Example:
+
+src/
+  data/
+    subjects/
+      os.ts
+      dbms.ts
+      networking.ts
+      c.ts
+      web.ts
+      mathematics.ts
+      physics.ts
+      chemistry.ts
+      communication.ts
+
+    questions/
+      os.ts
+      dbms.ts
+      networking.ts
+      c.ts
+      web.ts
+
+    notes/
+      os.ts
+      dbms.ts
+      networking.ts
+      c.ts
+      web.ts
+
+    videos/
+      os.ts
+      dbms.ts
+      networking.ts
+      c.ts
+      web.ts
+
+This makes future updates easy.
+
+---
+
+24. VERIFIED CONTENT VS GENERATED CONTENT
+
+Every educational resource should have a source label.
+
+Use:
+
+OFFICIAL / VERIFIED
+
+for information actually verified from an authoritative source.
+
+Use:
+
+T2S STUDY MATERIAL
+
+for original educational explanations.
+
+Use:
+
+T2S PRACTICE
+
+for generated questions.
+
+Use:
+
+PREVIOUS-YEAR PAPER
+
+only when the source/year has actually been verified.
+
+Never fabricate:
+
+- Exam years
+- Question-paper sources
+- Official BTEUP claims
+- Marks
+- Syllabus details
+- Video titles
+- Video links
+
+---
+
+25. STUDY MATERIAL DEPTH
+
+Do not fill the application with tiny placeholder paragraphs.
+
+Every major topic should eventually support:
+
+Quick Revision
+
+A short explanation.
+
+Detailed Notes
+
+A complete student-friendly explanation.
+
+Important Points
+
+Exam-focused bullets.
+
+Example
+
+A practical example.
+
+Practice
+
+Questions based on the topic.
+
+Video
+
+Relevant educational lecture.
+
+Revision
+
+Quick recap.
+
+Exam Questions
+
+Questions commonly expected from the concept.
+
+---
+
+26. C PROGRAMMING CONTENT
+
+For every important C topic, provide:
+
+- Explanation
+- Syntax
+- Example
+- Output
+- Common mistakes
+- Practice question
+- MCQs
+- Coding challenge
+
+Examples:
+
+#include <stdio.h>
+
+int main() {
+    printf("Hello, T2S!");
+    return 0;
+}
+
+The C Lab should eventually contain a substantial collection of syllabus-relevant programs.
+
+---
+
+27. DBMS PRACTICE
+
+Add an SQL learning section.
+
+Include examples for:
+
+- CREATE
+- INSERT
+- SELECT
+- UPDATE
+- DELETE
+- WHERE
+- ORDER BY
+- GROUP BY
+- HAVING
+- JOIN
+- Subqueries
+
+Create SQL practice questions where the student predicts output or writes the query.
+
+---
+
+28. NETWORKING PRACTICE
+
+Add interactive diagrams for:
+
+- OSI model
+- TCP/IP model
+- Network topology
+- Packet flow
+- TCP handshake concept
+- IP addressing
+- Network devices
+
+Make diagrams interactive and animated where practical.
+
+---
+
+29. OS INTERACTIVE LEARNING
+
+Create visual explanations for:
+
+- Process lifecycle
+- CPU scheduling
+- Scheduling algorithms
+- Memory allocation
+- Paging
+- Deadlocks
+- File systems
+
+For CPU scheduling, allow students to enter processes and visualize a simplified scheduling result using Gantt-style visualization.
+
+---
+
+30. WEB TECHNOLOGY LAB
+
+Add a Web Technology playground containing:
+
+- HTML editor
+- CSS editor
+- JavaScript editor
+- Preview window
+
+Students should be able to experiment with simple web examples.
+
+---
+
+31. BACK PAPER REVISION MODE
+
+Create:
+
+BACK PAPER CRASH REVISION
+
+For each back-paper subject provide:
+
+- Important concepts
+- Important formulas
+- Short notes
+- Frequently tested concepts
+- Practice questions
+- Mock tests
+- Revision checklist
+
+Do not promise that any question is guaranteed to appear in an exam.
+
+---
+
+32. AI STUDY ASSISTANT UPGRADE
+
+Upgrade the existing AI chat.
+
+Add context buttons:
+
+Explain
+
+Summarize
+
+Quiz Me
+
+Make Notes
+
+Give Examples
+
+Revise This Topic
+
+Exam Questions
+
+Explain Like I'm a Beginner
+
+When a user opens AI from a particular subject/topic, automatically pass that context into the AI interface.
+
+Example:
+
+Opening AI from:
+
+"DBMS → Unit 3 → SQL JOIN"
+
+should show:
+
+«“I'm currently studying DBMS SQL JOINs.”»
+
+---
+
+33. GROUP AI
+
+Add optional group functionality:
+
+Ask T2S AI for the group
+
+The AI can generate:
+
+- Group quiz
+- Study challenge
+- Revision session
+- 20-question mock test
+- Topic explanation
+- Study plan
+
+---
+
+34. SEARCH EVERYTHING
+
+The global search should search across:
+
+- Subjects
+- Units
+- Topics
+- Notes
+- Questions
+- Videos
+- Todos
+- C programs
+- Resources
+
+Show results grouped by category.
+
+---
+
+35. PERFORMANCE
+
+Because this is React Native + Expo:
+
+- Avoid unnecessarily heavy 3D rendering
+- Avoid excessive re-renders
+- Use FlatList/FlashList-style efficient lists where appropriate
+- Lazy-load large content
+- Avoid loading every video/question simultaneously
+- Optimize animations
+- Keep mobile performance smooth
+- Make the app usable on mid-range Android devices
+
+The aesthetic must never destroy usability.
+
+---
+
+36. RESPONSIVE DESIGN
+
+T2S must work properly on:
+
+- Android
+- iOS
+- Web
+
+Maintain the existing Expo architecture.
+
+Do not introduce dependencies that are incompatible with Expo SDK 57 without a clear reason.
+
+---
+
+37. ERROR HANDLING
+
+Every feature should have proper states:
+
+- Loading
+- Empty
+- Error
+- Success
+- Offline
+
+Example:
+
+If videos cannot load:
+
+«“Videos are currently unavailable. You can retry or continue with Notes.”»
+
+Never show a blank screen.
+
+---
+
+38. FINAL HOME EXPERIENCE
+
+The Home screen should become a real command center.
+
+Show:
+
+T2S CORE
+
+Three friends connected.
+
+TODAY
+
+- Today's study goal
+- Current streak
+- Pending tasks
+
+SEMESTER 3
+
+Overall progress.
+
+CONTINUE STUDYING
+
+Resume the last topic.
+
+DAILY 20
+
+Start today's practice.
+
+GROUP PROGRESS
+
+Three friends.
+
+BACK PAPERS
+
+Current revision progress.
+
+QUICK ACTIONS
+
+- Quiz
+- Notes
+- C Lab
+- Videos
+- Timer
+- Exam Prep
+- AI
+
+---
+
+39. SETTINGS
+
+Add:
+
+- Theme
+- Sound
+- Notifications
+- Offline mode
+- Study reminders
+- Reset progress
+- Export notes
+- Import notes
+- Clear local data
+- About T2S
+
+For destructive actions, require confirmation.
+
+---
+
+40. CONTENT UPDATE SYSTEM
+
+The most important long-term requirement:
+
+The application should be easy to update while studying.
+
+I will continuously add:
+
+- New notes
+- New written material
+- New videos
+- New questions
+- New PYQs
+- New topics
+- New syllabus updates
+- New practicals
+- New study resources
+
+Therefore, design the data layer so adding new content is as simple as adding a structured data entry rather than rewriting screens.
+
+---
+
+41. FINAL QUALITY CHECK
+
+Before considering the build complete:
+
+1. Run the application.
+2. Test every route.
+3. Test every button.
+4. Test every form.
+5. Test notes CRUD.
+6. Test persistence.
+7. Test quizzes.
+8. Test marking.
+9. Test negative marking.
+10. Test mock-test timer.
+11. Test videos.
+12. Test C Lab.
+13. Test Web Lab.
+14. Test search.
+15. Test filters.
+16. Test themes.
+17. Test group features.
+18. Test todos.
+19. Test progress calculations.
+20. Test offline behavior.
+21. Test Android layout.
+22. Test web layout.
+23. Fix TypeScript errors.
+24. Fix navigation errors.
+25. Fix runtime errors.
+26. Remove placeholder buttons.
+27. Remove fake progress values where real data exists.
+28. Check that no links are fabricated.
+29. Check that educational claims are properly sourced.
+30. Build the production web version.
+
+Run:
+
+npm install
 npx expo start --web
-
-# Production build
 npx expo export --platform web
-
-# Serve
 npx serve -s dist -l 8081
 
 ---
 
-## Key Features
+FINAL PRODUCT VISION
 
-- Notes CRUD — Create, edit, delete, star, share, search, filter by subject
-- Exam Prep — 20 expected questions + 8 question papers with Google search links
-- Video Lectures — YouTube links for all 9 subjects
-- Quiz — 8 MCQs with difficulty levels, explanations, results
-- C Lab — Terminal UI with code examples, copy, practice problems
-- Focus Timer — Pomodoro with session tracking
-- AI Chat — Smart responses for OS, SQL, Networking, C, CSS
-- 4 Themes — Switchable in real-time
-- Group Room — Study groups, challenges, shared space
+T2S should no longer feel like a simple college dashboard.
 
----
+It should feel like a complete personal + group CSE study ecosystem.
 
-Author: Tauseef — Diploma CSE, BTEUP, Semester 3
+The final experience should combine:
+
+3D Interface
+
++ 
+
+Semester Management
+
++ 
+
+Complete Study Notes
+
++ 
+
+Written Notes
+
++ 
+
+Government-Exam-Style Practice
+
++ 
+
+Mock Tests
+
++ 
+
+Negative Marking
+
++ 
+
+Question Bank
+
++ 
+
+Video Learning
+
++ 
+
+C Programming Lab
+
++ 
+
+Web Technology Lab
+
++ 
+
+DBMS/SQL Practice
+
++ 
+
+Networking Visualizations
+
++ 
+
+OS Simulations
+
++ 
+
+AI Tutor
+
++ 
+
+Todos
+
++ 
+
+Smart Revision
+
++ 
+
+Mistake Notebook
+
++ 
+
+Progress Tracking
+
++ 
+
+Group Stud
